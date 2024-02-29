@@ -4,11 +4,12 @@ const cors = require( 'cors')
 const bible = require( './models/bible')
 const path = require("path")
 const app = express()
+require("dotenv").config()
 app.use(cors());
 app.use(express.json())
 
 const PORT = 5000
-const DB = "mongodb+srv://bible:bibleapp@cluster0.3om6qgr.mongodb.net/bibleApp?retryWrites=true&w=majority&appName=Cluster0"
+const DB = process.env.DB_URI
 mongoose.set('strictQuery', false);
 mongoose.connect(DB).then(() => app.listen(PORT)).catch(err => console.log(err))
 
